@@ -1,6 +1,8 @@
 # Set the minimum required version of CMake
 cmake_minimum_required(VERSION 3.18)
 
+option(ENABLE_PROFILE "Enable PROFILE" ON)
+
 include(CheckLanguage)
 # Set the project name
 project(chat LANGUAGES CXX)
@@ -70,3 +72,9 @@ message("Common files :\n${COMMON_FILES}")
 add_executable(${PROJECT_NAME}  application/chat.cc)
 
 target_link_libraries(${PROJECT_NAME}  CUDA_Shared_lib Common_Shared_lib)
+
+
+if (ENABLE_PROFILE)
+  message("enable profile function")
+  add_subdirectory(tests)
+endif()
