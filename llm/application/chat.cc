@@ -503,7 +503,7 @@ int main(int argc, char* argv[]) {
                     input = "### USER: " + input + "\n### ASSISTANT: \n";
                 }
 
-                LLaVAGenerate(llama_m_path, &llama_model, clip_m_path, &clip_model, LLaVA_FP32, input, img_path, generation_config, "models/llama_vocab.bin", true, false, false);
+                // LLaVAGenerate(llama_m_path, &llama_model, clip_m_path, &clip_model, LLaVA_FP32, input, img_path, generation_config, "models/llama_vocab.bin", true, false, false);
             }
         } else if (format_id == INT4) {
             Fp32CLIPVisionTransformer clip_model = Fp32CLIPVisionTransformer(clip_m_path, get_opt_model_config(clip_model_id), false);
@@ -561,7 +561,7 @@ int main(int argc, char* argv[]) {
                     input = "### USER: " + input + "\n### ASSISTANT: \n";
                 }
 
-                LLaVAGenerate(llama_m_path, &llama_model, clip_m_path, &clip_model, LLaVA_INT4, input, img_path, generation_config, "models/llama_vocab.bin", true, use_voicechat, false);
+                // LLaVAGenerate(llama_m_path, &llama_model, clip_m_path, &clip_model, LLaVA_INT4, input, img_path, generation_config, "models/llama_vocab.bin", true, use_voicechat, false);
             }
         } else {
             std::cout << std::endl;
@@ -655,7 +655,7 @@ int main(int argc, char* argv[]) {
                     input = "### USER: " + input + "\n### ASSISTANT: \n";
                 }
 
-                LLaVAGenerate(llama_m_path, &llama_model, clip_m_path, &clip_model, VILA_FP32, input, img_path, generation_config, "models/llama_vocab.bin", true, false, true);
+                // LLaVAGenerate(llama_m_path, &llama_model, clip_m_path, &clip_model, VILA_FP32, input, img_path, generation_config, "models/llama_vocab.bin", true, false, true);
             }
         } else if (format_id == INT4) {
             Fp32CLIPVisionTransformer clip_model = Fp32CLIPVisionTransformer(clip_m_path, get_opt_model_config(clip_model_id), true);
@@ -713,7 +713,7 @@ int main(int argc, char* argv[]) {
                     input = "### USER: " + input + "\n### ASSISTANT: \n";
                 }
 
-                LLaVAGenerate(llama_m_path, &llama_model, clip_m_path, &clip_model, VILA_INT4, input, img_path, generation_config, "models/llama_vocab.bin", true, use_voicechat, true);
+                // LLaVAGenerate(llama_m_path, &llama_model, clip_m_path, &clip_model, VILA_INT4, input, img_path, generation_config, "models/llama_vocab.bin", true, use_voicechat, true);
             }
         } else {
             std::cout << std::endl;

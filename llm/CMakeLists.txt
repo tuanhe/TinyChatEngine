@@ -67,14 +67,13 @@ aux_source_directory(src/nn_modules COMMON_FILES)
 
 add_library(Common_Shared_lib SHARED ${COMMON_FILES})
 message("Common files :\n${COMMON_FILES}")
-# aux_source_directory(. SRC)
-# enable_language(CXX)
-add_executable(${PROJECT_NAME}  application/chat.cc)
 
+## application
+add_executable(${PROJECT_NAME}  application/chat.cc)
 target_link_libraries(${PROJECT_NAME}  CUDA_Shared_lib Common_Shared_lib)
 
 
+## profile
 if (ENABLE_PROFILE)
-  message("enable profile function")
   add_subdirectory(tests)
 endif()
