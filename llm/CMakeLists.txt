@@ -2,6 +2,8 @@
 cmake_minimum_required(VERSION 3.18)
 
 option(ENABLE_PROFILE "Enable PROFILE" ON)
+option(ENABLE_EXAMPLE "Enable EXAMPLE" ON)
+
 
 include(CheckLanguage)
 # Set the project name
@@ -69,9 +71,11 @@ add_library(Common_Shared_lib SHARED ${COMMON_FILES})
 message("Common files :\n${COMMON_FILES}")
 
 ## application
-add_executable(${PROJECT_NAME}  application/chat.cc)
-target_link_libraries(${PROJECT_NAME}  CUDA_Shared_lib Common_Shared_lib)
-
+if (ENABLE_EXAMPLE)
+  # add_executable(${PROJECT_NAME}  application/chat.cc)
+  # target_link_libraries(${PROJECT_NAME}  CUDA_Shared_lib Common_Shared_lib)
+  add_subdirectory(application)
+endif()
 
 ## profile
 if (ENABLE_PROFILE)

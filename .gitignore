@@ -19,7 +19,6 @@ models/
 !llama_vocab.bin
 !starcoder_vocab.bin
 *.zip
-*.txt
 !requirements.txt
 *.pt
 *.json
