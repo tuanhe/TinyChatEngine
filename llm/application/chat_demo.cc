@@ -103,76 +103,6 @@ bool convertToBool(const char* str) {
     }
 }
 
-int NUM_THREAD = 6;
-
-#if 0
-static void print_help(char** argv)
-{
-    std::cout <<
-        "Usage: " << argv[0] << " -c <yml files>\n"
-        "\n"
-        "-c --cfg_file <.yml file path>:       .yaml to be loaded and configured\n"
-        "-b --backend <device>:                preferred backend device to run graph on by default. \n"
-        "-l --loops <int>:                     provide the number of times the inference will be executed\n"
-        "                                      (by default nb_loops=1)\n"
-        "--help:                               show this help\n";
-    exit(1);
-}
-
-void process_args(int argc, char** argv)
-{
-    const char* const short_opts = "c:b:i:l:h";
-    const option long_opts[] = {
-        {"cfg_file",     required_argument, nullptr, 'c'},
-        {"backend",      required_argument, nullptr, 'b'},
-        {"image",        required_argument, nullptr, 'i'},
-        {"loops",        required_argument, nullptr, 'l'},
-        {"help",         no_argument,       nullptr, 'h'},
-        {nullptr,        no_argument,       nullptr, 0}
-    };
-
-    while (true)
-    {
-        const auto opt = getopt_long(argc, argv, short_opts, long_opts, nullptr);
-
-        if (-1 == opt)
-        {
-            break;
-        }
-
-        switch (opt)
-        {
-        case 'c':
-            cfg_file_str = std::string(optarg);
-            std::cout << "config file set to: " << cfg_file_str << std::endl;
-            break;
-        case 'b':
-            preferred_backend_str = std::string(optarg);
-            std::cout << "backend device set to:" << preferred_backend_str << std::endl;;
-            break;
-        case 'l':
-            nb_loops = std::stoi(optarg);
-            std::cout << "benchmark will execute " << nb_loops << " inference(s)" << std::endl;
-            break;
-        case 'i':
-            input_image_path = std::string(optarg);
-            std::cout << "input images set " << input_image_path << std::endl;
-            break;
-        case 'h': // -h or --help
-        case '?': // Unrecognized option
-        default:
-            print_help(argv);
-            break;
-        }
-    }
-
-    if (cfg_file_str.empty())
-    {
-        //print_help(argv);
-    }
-}
-#endif
-
 void arguments_check(std::string& model_name, std::string model_data_type)
 {
     if (model_config.count(model_name) == 0) {
@@ -210,21 +140,8 @@ int main(int argc, char* argv[]) {
     std::string model_name = "LLaMA2_7B_chat";
     std::string model_path;
     std::string model_data_type = "INT4";
-    int num_thread = NUM_THREAD;
+    int num_thread = 6;
     bool use_voicechat = false;
-
-    // Check for optional arguments
-    for (int i = 1; i < argc; ++i) {
-        if (strcmp(argv[i], "-v") == 0) {
-            use_voicechat = true;
-            // Remove the flag from argc and argv
-            for (int j = i; j < argc - 1; ++j) {
-                argv[j] = argv[j + 1];
-            }
-            --argc;
-            break;
-        }
-    }
 
     while ((opt = getopt(argc, argv, "m:p:t:j")) != -1) {
         switch (opt) {
