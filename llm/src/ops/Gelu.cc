@@ -1,5 +1,6 @@
 #include "ops/Gelu.h"
 
+#include <cmath>
 #include <cassert>
 #include <cmath>
 
